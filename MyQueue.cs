@@ -1,4 +1,6 @@
-﻿class MyQueue : CollectionBase
+﻿using System.Collections;
+
+class MyQueue : CollectionBase, IEnumerable
 {
     public MyQueue(int capacity = 4) : base(capacity) { }
 
@@ -32,5 +34,10 @@
         EnsureNotEmpty("Queue");
 
         return _items[0];
+    }
+
+    public new IEnumerator GetEnumerator()
+    {
+        return new ArrayEnumerator(_items, _count);
     }
 }

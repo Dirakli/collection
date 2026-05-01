@@ -1,4 +1,6 @@
-﻿class MyStack : CollectionBase
+﻿using System.Collections;
+
+class MyStack : CollectionBase
 {
     public MyStack(int capacity = 4) : base(capacity) { }
     public void Push(object value)
@@ -8,7 +10,6 @@
 
         _items[_count++] = value;
     }
-
     public object? Pop()
     {
         EnsureNotEmpty("Stack");
@@ -24,5 +25,10 @@
         EnsureNotEmpty("Stack");
 
         return _items[_count - 1];
+    }
+
+    public new IEnumerator GetEnumerator()
+    {
+        return new ArrayEnumerator(_items, _count);
     }
 }

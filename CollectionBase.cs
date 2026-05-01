@@ -1,11 +1,15 @@
-﻿using System;
-
-abstract class CollectionBase
+﻿using System.Collections;
+abstract class CollectionBase : IEnumerable
 {
     protected object?[] _items;
     protected int _count;
 
     public int Count => _count;
+
+    public IEnumerator GetEnumerator()
+    {
+        return new ArrayEnumerator(_items, _count);
+    }
 
     protected CollectionBase(int capacity = 4)
     {

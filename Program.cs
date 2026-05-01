@@ -12,12 +12,13 @@ namespace ConsoleApp218
             stack.Push("Paladin");
             stack.Push("Human");
             stack.Push("Hunter");
+            Console.WriteLine(stack.Peek());
+            stack.Pop();
 
-            while (stack.Count > 0)
+            foreach (var item in stack)
             {
                 Console.ForegroundColor = ConsoleColor.DarkRed;
-                Console.WriteLine(stack.Peek());
-                stack.Pop();
+                Console.WriteLine("foreach: " + item);
                 Console.ResetColor();
             }
 
@@ -30,17 +31,16 @@ namespace ConsoleApp218
             queue.Enqueue("Tesla");
             queue.Enqueue("Suzuki");
 
-            while (queue.Count > 0)
-            {
+            Console.WriteLine(queue.Peek());
+            queue.Dequeue();
+
+           foreach(var item in queue) { 
                 Console.ForegroundColor = ConsoleColor.DarkCyan;
-                Console.WriteLine(queue.Peek());
-                queue.Dequeue();
+                Console.WriteLine("foreach: " + item);
                 Console.ResetColor();
             }
 
             Console.WriteLine();
-
-
 
             MyList list = new MyList();
 
@@ -55,9 +55,11 @@ namespace ConsoleApp218
 
             list[2] = "Jumberi";
 
-            for (int i = 0; i < list.Count; i++)
+            Console.WriteLine("Stack: \n");
+
+            foreach (var item in list)
             {
-                Console.WriteLine(list[i]);
+                Console.WriteLine("foreach: " + item);
             }
 
             Console.WriteLine("GetElementAt(2): " + list.GetElementAt(2));

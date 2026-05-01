@@ -105,9 +105,9 @@ class MyList : CollectionBase, IList
         }
     }
 
-    public IEnumerator GetEnumerator()
+    public new IEnumerator GetEnumerator()
     {
-        throw new NotImplementedException();
+        return new ArrayEnumerator(_items, _count);
     }
 
     public bool IsSynchronized => false;
