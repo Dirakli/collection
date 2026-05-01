@@ -16,7 +16,7 @@ class ArrayEnumerator : IEnumerator
 
     public bool MoveNext()
     {
-        if (_index < _items.Length - 1)
+        if (_index < _count - 1)
         {
             _index++;
             return true;
