@@ -1,25 +1,25 @@
 ﻿using System.Collections;
-abstract class CollectionBase : IEnumerable
+abstract class CollectionBase<T> : IEnumerable
 {
-    protected object?[] _items;
+    protected T?[] _items;
     protected int _count;
 
     public int Count => _count;
 
     public IEnumerator GetEnumerator()
     {
-        return new ArrayEnumerator(_items, _count);
+        return new ArrayEnumerator<T>(_items, _count);
     }
 
     protected CollectionBase(int capacity = 4)
     {
-        _items = new object[capacity];
+        _items = new T[capacity];
         _count = 0;
     }
 
     protected void IncreaseCapacity()
     {
-        object?[] newItems = new object?[_items.Length * 2];
+        T?[] newItems = new T?[_items.Length * 2];
 
         for (int i = 0; i < _count; i++)
         {
@@ -33,7 +33,7 @@ abstract class CollectionBase : IEnumerable
     {
         for (int i = 0; i < _count; i++)
         {
-            _items[i] = null;
+            _items[i] = default(T);
         }
 
         _count = 0;

@@ -1,4 +1,5 @@
 ﻿using System.Collections;
+using System.Collections.Generic;
 
 namespace ConsoleApp218
 {
@@ -8,7 +9,9 @@ namespace ConsoleApp218
         {
             Console.WriteLine("Stack: ");
             Console.WriteLine();
-            MyStack stack = new MyStack();
+
+            MyStack<string> stack = new MyStack<string>();
+
             stack.Push("Paladin");
             stack.Push("Human");
             stack.Push("Hunter");
@@ -26,7 +29,7 @@ namespace ConsoleApp218
             Console.WriteLine("Queue: ");
             Console.WriteLine();
 
-            MyQueue queue = new MyQueue();
+            MyQueue<string> queue = new MyQueue<string>();
             queue.Enqueue("Mercedes Benz");
             queue.Enqueue("Tesla");
             queue.Enqueue("Suzuki");
@@ -42,7 +45,7 @@ namespace ConsoleApp218
 
             Console.WriteLine();
 
-            MyList list = new MyList();
+            MyList<string> list = new MyList<string>();
 
             list.Add("Euripide");
             list.Add("Sophocle");

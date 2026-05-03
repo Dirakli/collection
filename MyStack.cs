@@ -1,22 +1,22 @@
 ﻿using System.Collections;
-
-class MyStack : CollectionBase
+using System.Collections.Generic;
+class MyStack<T> : CollectionBase<T>
 {
     public MyStack(int capacity = 4) : base(capacity) { }
-    public void Push(object value)
+    public void Push(T value)
     {
         if (_count == _items.Length)
             IncreaseCapacity();
 
         _items[_count++] = value;
     }
-    public object? Pop()
+    public T? Pop()
     {
         EnsureNotEmpty("Stack");
 
         _count--;
-        object? item = _items[_count];
-        _items[_count] = null;
+        T? item = _items[_count];
+        _items[_count] = default(T);
         return item;
     }
 
@@ -29,6 +29,6 @@ class MyStack : CollectionBase
 
     public new IEnumerator GetEnumerator()
     {
-        return new ArrayEnumerator(_items, _count);
+        return new ArrayEnumerator<T>(_items, _count);
     }
 }

@@ -1,10 +1,10 @@
 ﻿using System.Collections;
 
-class MyQueue : CollectionBase, IEnumerable
+class MyQueue<T> : CollectionBase<T>, IEnumerable
 {
     public MyQueue(int capacity = 4) : base(capacity) { }
 
-    public void Enqueue(object value)
+    public void Enqueue(T value)
     {
         if (_count == _items.Length)
             IncreaseCapacity();
@@ -13,11 +13,11 @@ class MyQueue : CollectionBase, IEnumerable
         _count++;
     }
 
-    public object? Dequeue()
+    public T? Dequeue()
     {
         EnsureNotEmpty("Queue");
 
-        object? firstElement = _items[0];
+        T? firstElement = _items[0];
 
         for (int i = 1; i < _count; i++)
         {
@@ -25,7 +25,7 @@ class MyQueue : CollectionBase, IEnumerable
         }
 
         _count--;
-        _items[_count] = null;
+        _items[_count] = default(T);
         return firstElement;
     }
 
@@ -38,6 +38,6 @@ class MyQueue : CollectionBase, IEnumerable
 
     public new IEnumerator GetEnumerator()
     {
-        return new ArrayEnumerator(_items, _count);
+        return new ArrayEnumerator<T>(_items, _count);
     }
 }

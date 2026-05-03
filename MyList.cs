@@ -1,5 +1,5 @@
 ﻿using System.Collections;
-class MyList : CollectionBase, IList
+class MyList<T> : CollectionBase<T>
 {
     public MyList() : base(4) { }
 
@@ -10,7 +10,7 @@ class MyList : CollectionBase, IList
         return _items[index];
     }
 
-    public int Add(object? value)
+    public int Add(T? value)
     {
         if (_count == _items.Length)
         {
@@ -21,7 +21,7 @@ class MyList : CollectionBase, IList
         return _count++;
     }
 
-    public void Insert(int index, object? value)
+    public void Insert(int index, T? value)
     {
         ValidateInsertIndex(index);
 
@@ -39,7 +39,7 @@ class MyList : CollectionBase, IList
         _count++;
     }
 
-    public void Remove(object? value)
+    public void Remove(T? value)
     {
         int index = IndexOf(value);
         if (index != -1) RemoveAt(index);
@@ -54,7 +54,7 @@ class MyList : CollectionBase, IList
             _items[i] = _items[i + 1];
         }
 
-        _items[_count - 1] = null;
+        _items[_count - 1] = default(T);
         _count--;
     }
 
@@ -62,29 +62,29 @@ class MyList : CollectionBase, IList
     {
         for (int i = 0; i < _count; i++)
         {
-            _items[i] = null;
+            _items[i] = default(T);
         }
 
         _count = 0;
     }
 
-    public bool Contains(object? value)
+    public bool Contains(T? value)
     {
         return IndexOf(value) != -1;
     }
 
-    public int IndexOf(object? value)
+    public int IndexOf(T? value)
     {
-        return IndexOf(value, 0);
+        return 1;
     }
 
-    public int IndexOf(object? value, int startIndex)
+    public int IndexOf(T? value, int startIndex)
     {
         ValidateInsertIndex(startIndex);
 
         for (int i = startIndex; i < _count; i++)
         {
-            if (value == _items[i])
+            if (value == _items[i]) // needs fixing!
                 return i;
         }
 
@@ -107,7 +107,7 @@ class MyList : CollectionBase, IList
 
     public new IEnumerator GetEnumerator()
     {
-        return new ArrayEnumerator(_items, _count);
+        return new ArrayEnumerator<T>(_items, _count);
     }
 
     public bool IsSynchronized => false;
@@ -115,7 +115,7 @@ class MyList : CollectionBase, IList
     public bool IsFixedSize => false;
     public bool IsReadOnly => false;
 
-    public object? this[int index]
+    public T? this[int index]
     {
         get
         {

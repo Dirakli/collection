@@ -1,12 +1,12 @@
 ﻿using System.Collections;
 
-class ArrayEnumerator : IEnumerator
+class ArrayEnumerator<T> : IEnumerator
 {
-    private object?[] _items;
+    private T?[] _items;
     private int _count;
     private int _index = -1;
 
-    public ArrayEnumerator(object?[] items, int count)
+    public ArrayEnumerator(T?[] items, int count)
     {
         _items = items;
         _count = count;
